@@ -1,0 +1,655 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QuanLyKhoModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="customers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="gender" Type="tinyint" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="note" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="input">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="suppliers_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="inputdetail">
+          <Key>
+            <PropertyRef Name="input_id" />
+            <PropertyRef Name="products_id" />
+          </Key>
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
+          <Property Name="input_id" Type="bigint" Nullable="false" />
+          <Property Name="products_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="output">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="amount" Type="int" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="customers_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="outputdetail">
+          <Key>
+            <PropertyRef Name="output_id" />
+            <PropertyRef Name="products_id" />
+          </Key>
+          <Property Name="quantity" Type="int" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="amunt" Type="int" Nullable="false" />
+          <Property Name="output_id" Type="bigint" Nullable="false" />
+          <Property Name="products_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="unit" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="price" Type="int" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="note" Type="varchar" MaxLength="250" />
+          <Property Name="categories_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="45" Nullable="false" />
+        </EntityType>
+        <EntityType Name="suppliers">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="address" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="phone" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="note" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="225" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="role_id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_input_suppliers1">
+          <End Role="suppliers" Type="Self.suppliers" Multiplicity="1" />
+          <End Role="input" Type="Self.input" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="suppliers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="input">
+              <PropertyRef Name="suppliers_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_inputdetail_input1">
+          <End Role="input" Type="Self.input" Multiplicity="1" />
+          <End Role="inputdetail" Type="Self.inputdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="input">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="inputdetail">
+              <PropertyRef Name="input_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_inputdetail_products1">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="inputdetail" Type="Self.inputdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="inputdetail">
+              <PropertyRef Name="products_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_output_customers1">
+          <End Role="customers" Type="Self.customers" Multiplicity="1" />
+          <End Role="output" Type="Self.output" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="output">
+              <PropertyRef Name="customers_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_outputdetail_output1">
+          <End Role="output" Type="Self.output" Multiplicity="1" />
+          <End Role="outputdetail" Type="Self.outputdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="output">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="outputdetail">
+              <PropertyRef Name="output_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_outputdetail_products1">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="outputdetail" Type="Self.outputdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="outputdetail">
+              <PropertyRef Name="products_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_products_categories1">
+          <End Role="categories" Type="Self.categories" Multiplicity="1" />
+          <End Role="products" Type="Self.products" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="categories_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_role1">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="users" Type="Self.users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLyKhoModelStoreContainer">
+          <EntitySet Name="categories" EntityType="Self.categories" Schema="quanlykho" store:Type="Tables" />
+          <EntitySet Name="customers" EntityType="Self.customers" Schema="quanlykho" store:Type="Tables" />
+          <EntitySet Name="input" EntityType="Self.input" Schema="quanlykho" store:Type="Tables" />
+          <EntitySet Name="inputdetail" EntityType="Self.inputdetail" Schema="quanlykho" store:Type="Tables" />
+          <EntitySet Name="output" EntityType="Self.output" Schema="quanlykho" store:Type="Tables" />
+          <EntitySet Name="outputdetail" EntityType="Self.outputdetail" Schema="quanlykho" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="quanlykho" store:Type="Tables" />
+          <EntitySet Name="role" EntityType="Self.role" Schema="quanlykho" store:Type="Tables" />
+          <EntitySet Name="suppliers" EntityType="Self.suppliers" Schema="quanlykho" store:Type="Tables" />
+          <EntitySet Name="users" EntityType="Self.users" Schema="quanlykho" store:Type="Tables" />
+          <AssociationSet Name="fk_input_suppliers1" Association="Self.fk_input_suppliers1">
+            <End Role="suppliers" EntitySet="suppliers" />
+            <End Role="input" EntitySet="input" />
+          </AssociationSet>
+          <AssociationSet Name="fk_inputdetail_input1" Association="Self.fk_inputdetail_input1">
+            <End Role="input" EntitySet="input" />
+            <End Role="inputdetail" EntitySet="inputdetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_inputdetail_products1" Association="Self.fk_inputdetail_products1">
+            <End Role="products" EntitySet="products" />
+            <End Role="inputdetail" EntitySet="inputdetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_output_customers1" Association="Self.fk_output_customers1">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="output" EntitySet="output" />
+          </AssociationSet>
+          <AssociationSet Name="fk_outputdetail_output1" Association="Self.fk_outputdetail_output1">
+            <End Role="output" EntitySet="output" />
+            <End Role="outputdetail" EntitySet="outputdetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_outputdetail_products1" Association="Self.fk_outputdetail_products1">
+            <End Role="products" EntitySet="products" />
+            <End Role="outputdetail" EntitySet="outputdetail" />
+          </AssociationSet>
+          <AssociationSet Name="fk_products_categories1" Association="Self.fk_products_categories1">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_role1" Association="Self.fk_users_role1">
+            <End Role="role" EntitySet="role" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QuanLyKhoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="products" Relationship="Self.fk_products_categories1" FromRole="categories" ToRole="products" />
+        </EntityType>
+        <EntityType Name="customer">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="gender" Type="SByte" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="outputs" Relationship="Self.fk_output_customers1" FromRole="customers" ToRole="output" />
+        </EntityType>
+        <EntityType Name="input">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="SByte" Nullable="false" />
+          <Property Name="suppliers_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="supplier" Relationship="Self.fk_input_suppliers1" FromRole="input" ToRole="suppliers" />
+          <NavigationProperty Name="inputdetails" Relationship="Self.fk_inputdetail_input1" FromRole="input" ToRole="inputdetail" />
+        </EntityType>
+        <EntityType Name="inputdetail">
+          <Key>
+            <PropertyRef Name="input_id" />
+            <PropertyRef Name="products_id" />
+          </Key>
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <Property Name="input_id" Type="Int64" Nullable="false" />
+          <Property Name="products_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="input" Relationship="Self.fk_inputdetail_input1" FromRole="inputdetail" ToRole="input" />
+          <NavigationProperty Name="product" Relationship="Self.fk_inputdetail_products1" FromRole="inputdetail" ToRole="products" />
+        </EntityType>
+        <EntityType Name="output">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="amount" Type="Int32" Nullable="false" />
+          <Property Name="status" Type="SByte" Nullable="false" />
+          <Property Name="customers_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="customer" Relationship="Self.fk_output_customers1" FromRole="output" ToRole="customers" />
+          <NavigationProperty Name="outputdetails" Relationship="Self.fk_outputdetail_output1" FromRole="output" ToRole="outputdetail" />
+        </EntityType>
+        <EntityType Name="outputdetail">
+          <Key>
+            <PropertyRef Name="output_id" />
+            <PropertyRef Name="products_id" />
+          </Key>
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="amunt" Type="Int32" Nullable="false" />
+          <Property Name="output_id" Type="Int64" Nullable="false" />
+          <Property Name="products_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="output" Relationship="Self.fk_outputdetail_output1" FromRole="outputdetail" ToRole="output" />
+          <NavigationProperty Name="product" Relationship="Self.fk_outputdetail_products1" FromRole="outputdetail" ToRole="products" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="unit" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="price" Type="Int32" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="categories_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="category" Relationship="Self.fk_products_categories1" FromRole="products" ToRole="categories" />
+          <NavigationProperty Name="inputdetails" Relationship="Self.fk_inputdetail_products1" FromRole="products" ToRole="inputdetail" />
+          <NavigationProperty Name="outputdetails" Relationship="Self.fk_outputdetail_products1" FromRole="products" ToRole="outputdetail" />
+        </EntityType>
+        <EntityType Name="role">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="users" Relationship="Self.fk_users_role1" FromRole="role" ToRole="users" />
+        </EntityType>
+        <EntityType Name="supplier">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="note" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="inputs" Relationship="Self.fk_input_suppliers1" FromRole="suppliers" ToRole="input" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="225" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="status" Type="SByte" Nullable="false" />
+          <Property Name="role_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="role" Relationship="Self.fk_users_role1" FromRole="users" ToRole="role" />
+        </EntityType>
+        <Association Name="fk_products_categories1">
+          <End Role="categories" Type="Self.category" Multiplicity="1" />
+          <End Role="products" Type="Self.product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="categories">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="products">
+              <PropertyRef Name="categories_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_output_customers1">
+          <End Role="customers" Type="Self.customer" Multiplicity="1" />
+          <End Role="output" Type="Self.output" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="customers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="output">
+              <PropertyRef Name="customers_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_input_suppliers1">
+          <End Role="suppliers" Type="Self.supplier" Multiplicity="1" />
+          <End Role="input" Type="Self.input" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="suppliers">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="input">
+              <PropertyRef Name="suppliers_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_inputdetail_input1">
+          <End Role="input" Type="Self.input" Multiplicity="1" />
+          <End Role="inputdetail" Type="Self.inputdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="input">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="inputdetail">
+              <PropertyRef Name="input_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_inputdetail_products1">
+          <End Role="products" Type="Self.product" Multiplicity="1" />
+          <End Role="inputdetail" Type="Self.inputdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="inputdetail">
+              <PropertyRef Name="products_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_outputdetail_output1">
+          <End Role="output" Type="Self.output" Multiplicity="1" />
+          <End Role="outputdetail" Type="Self.outputdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="output">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="outputdetail">
+              <PropertyRef Name="output_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_outputdetail_products1">
+          <End Role="products" Type="Self.product" Multiplicity="1" />
+          <End Role="outputdetail" Type="Self.outputdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="outputdetail">
+              <PropertyRef Name="products_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_users_role1">
+          <End Role="role" Type="Self.role" Multiplicity="1" />
+          <End Role="users" Type="Self.user" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="role">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="users">
+              <PropertyRef Name="role_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QuanLyKhoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="categories" EntityType="Self.category" />
+          <EntitySet Name="customers" EntityType="Self.customer" />
+          <EntitySet Name="inputs" EntityType="Self.input" />
+          <EntitySet Name="inputdetails" EntityType="Self.inputdetail" />
+          <EntitySet Name="outputs" EntityType="Self.output" />
+          <EntitySet Name="outputdetails" EntityType="Self.outputdetail" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <EntitySet Name="roles" EntityType="Self.role" />
+          <EntitySet Name="suppliers" EntityType="Self.supplier" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="fk_products_categories1" Association="Self.fk_products_categories1">
+            <End Role="categories" EntitySet="categories" />
+            <End Role="products" EntitySet="products" />
+          </AssociationSet>
+          <AssociationSet Name="fk_output_customers1" Association="Self.fk_output_customers1">
+            <End Role="customers" EntitySet="customers" />
+            <End Role="output" EntitySet="outputs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_input_suppliers1" Association="Self.fk_input_suppliers1">
+            <End Role="suppliers" EntitySet="suppliers" />
+            <End Role="input" EntitySet="inputs" />
+          </AssociationSet>
+          <AssociationSet Name="fk_inputdetail_input1" Association="Self.fk_inputdetail_input1">
+            <End Role="input" EntitySet="inputs" />
+            <End Role="inputdetail" EntitySet="inputdetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_inputdetail_products1" Association="Self.fk_inputdetail_products1">
+            <End Role="products" EntitySet="products" />
+            <End Role="inputdetail" EntitySet="inputdetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_outputdetail_output1" Association="Self.fk_outputdetail_output1">
+            <End Role="output" EntitySet="outputs" />
+            <End Role="outputdetail" EntitySet="outputdetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_outputdetail_products1" Association="Self.fk_outputdetail_products1">
+            <End Role="products" EntitySet="products" />
+            <End Role="outputdetail" EntitySet="outputdetails" />
+          </AssociationSet>
+          <AssociationSet Name="fk_users_role1" Association="Self.fk_users_role1">
+            <End Role="role" EntitySet="roles" />
+            <End Role="users" EntitySet="users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QuanLyKhoModelStoreContainer" CdmEntityContainer="QuanLyKhoEntities">
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="QuanLyKhoModel.category">
+              <MappingFragment StoreEntitySet="categories">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="customers">
+            <EntityTypeMapping TypeName="QuanLyKhoModel.customer">
+              <MappingFragment StoreEntitySet="customers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="note" ColumnName="note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inputs">
+            <EntityTypeMapping TypeName="QuanLyKhoModel.input">
+              <MappingFragment StoreEntitySet="input">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="suppliers_id" ColumnName="suppliers_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inputdetails">
+            <EntityTypeMapping TypeName="QuanLyKhoModel.inputdetail">
+              <MappingFragment StoreEntitySet="inputdetail">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="input_id" ColumnName="input_id" />
+                <ScalarProperty Name="products_id" ColumnName="products_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="outputs">
+            <EntityTypeMapping TypeName="QuanLyKhoModel.output">
+              <MappingFragment StoreEntitySet="output">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="customers_id" ColumnName="customers_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="outputdetails">
+            <EntityTypeMapping TypeName="QuanLyKhoModel.outputdetail">
+              <MappingFragment StoreEntitySet="outputdetail">
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="amunt" ColumnName="amunt" />
+                <ScalarProperty Name="output_id" ColumnName="output_id" />
+                <ScalarProperty Name="products_id" ColumnName="products_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="QuanLyKhoModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="unit" ColumnName="unit" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="note" ColumnName="note" />
+                <ScalarProperty Name="categories_id" ColumnName="categories_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="roles">
+            <EntityTypeMapping TypeName="QuanLyKhoModel.role">
+              <MappingFragment StoreEntitySet="role">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="suppliers">
+            <EntityTypeMapping TypeName="QuanLyKhoModel.supplier">
+              <MappingFragment StoreEntitySet="suppliers">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="note" ColumnName="note" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="QuanLyKhoModel.user">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="role_id" ColumnName="role_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
