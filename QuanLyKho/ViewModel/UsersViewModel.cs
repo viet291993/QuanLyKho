@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace QuanLyKho.ViewModel
 {
-    public class HomeViewModel : ObservableObject, IPageViewModel
+    public class UsersViewModel : ObservableObject, IPageViewModel
     {
-        public string Name => "Trang chủ";
+        public string Name => "Người dùng";
 
-        public string PackIcon => "Home";
+        public string PackIcon => "Account";
     }
 }

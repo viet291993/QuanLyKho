@@ -11,6 +11,6 @@ namespace QuanLyKho.ViewModel
     {
         public string Name => "Sản phẩm";
 
-        public string PackIcon => "TshirtCrew";
+        public string PackIcon => "Cube";
     }
 }

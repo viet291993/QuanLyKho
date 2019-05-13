@@ -7,15 +7,33 @@
         xmlns:localView="clr-namespace:QuanLyKho.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
        
-        mc:Ignorable="d" Height="600" Width="1024" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        mc:Ignorable="d" Height="700" Width="1300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
 
     <Window.Resources>
         <ResourceDictionary>
             <DataTemplate DataType="{x:Type localViewModel:HomeViewModel}">
                 <localView:HomeView />
             </DataTemplate>
+            <DataTemplate DataType="{x:Type localViewModel:InputViewModel}">
+                <localView:InputView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type localViewModel:OutputViewModel}">
+                <localView:OutputView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type localViewModel:CategoriesViewModel}">
+                <localView:CategoriesView />
+            </DataTemplate>
             <DataTemplate DataType="{x:Type localViewModel:ProductsViewModel}">
                 <localView:ProductsView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type localViewModel:SuppliersViewModel}">
+                <localView:SuppliersView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type localViewModel:CustomersViewModel}">
+                <localView:CustomersView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type localViewModel:UsersViewModel}">
+                <localView:UsersView />
             </DataTemplate>
             <Style x:Key="ScrollThumbs" TargetType="{x:Type Thumb}">
                 <Setter Property="Template">
@@ -119,7 +137,7 @@
                 </LinearGradientBrush>
             </Grid.Background>
             <Grid.RowDefinitions>
-                <RowDefinition Height="100"/>
+                <RowDefinition Height="250"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.Effect>
@@ -127,7 +145,56 @@
             </Grid.Effect>
 
             <Grid Background="#FFA46FE4">
-                <TextBlock Text="DASHBOARD" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="WS Simple Gallifreyan" Foreground="#FFBC96EA" FontSize="16"/>
+                <materialDesign:Flipper  Style="{StaticResource MaterialDesignCardFlipper}" HorizontalAlignment="Left" Width="200">
+                    <materialDesign:Flipper.FrontContent>
+                        <Grid Height="256"  Width="200">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="160" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <materialDesign:ColorZone Mode="PrimaryLight" VerticalAlignment="Stretch">
+                                <materialDesign:PackIcon  Kind="AccountCircle" Height="128" Width="128"
+                                            VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </materialDesign:ColorZone>
+                            <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock Text="Admin"></TextBlock>
+                                <Button Content="Edit" Style="{StaticResource MaterialDesignFlatButton}" Command="{x:Static materialDesign:Flipper.FlipCommand}" Margin="0 4 0 0">
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </materialDesign:Flipper.FrontContent>
+                    <materialDesign:Flipper.BackContent>
+                        <Grid  Height="256" Width="200">
+                            <Grid.RowDefinitions>
+                                <RowDefinition  Height="Auto" />
+                                <RowDefinition  Height="*" />
+                            </Grid.RowDefinitions>
+                            <materialDesign:ColorZone Mode="Accent" Padding="6">
+                                <StackPanel Orientation="Horizontal">
+                                    <Button  Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                            Command="{x:Static materialDesign:Flipper.FlipCommand}" HorizontalAlignment="Left">
+                                        <materialDesign:PackIcon Kind="ArrowLeft"  HorizontalAlignment="Right" />
+                                    </Button>
+                                    <TextBlock Text="Edit User"  Margin="8 0 0 0" VerticalAlignment="Center"></TextBlock>
+                                </StackPanel>
+                            </materialDesign:ColorZone>
+                            <Grid  Grid.Row="1" Margin="0 6 0 0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="172">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <TextBox  materialDesign:HintAssist.Hint="First name" materialDesign:HintAssist.IsFloating="True" Margin="0 12 0 0">
+                                    Admin
+                                </TextBox>
+                                <TextBox Grid.Row="1" materialDesign:HintAssist.Hint="Last name" materialDesign:HintAssist.IsFloating="True" Margin="0 12 0 0">
+                                    Quản trị viên
+                                </TextBox>
+                            </Grid>
+                        </Grid>
+                    </materialDesign:Flipper.BackContent>
+                </materialDesign:Flipper>
             </Grid>
 
             <StackPanel Grid.Row="1">
@@ -149,7 +216,7 @@
 
 
 
-               
+
             </StackPanel>
         </Grid>
 

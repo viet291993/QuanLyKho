@@ -21,7 +21,13 @@ namespace QuanLyKho
         {
             // Add available pages
             PageViewModels.Add(new HomeViewModel());
+            PageViewModels.Add(new InputViewModel());
+            PageViewModels.Add(new OutputViewModel());
+            PageViewModels.Add(new CategoriesViewModel());
             PageViewModels.Add(new ProductsViewModel());
+            PageViewModels.Add(new SuppliersViewModel());
+            PageViewModels.Add(new CustomersViewModel());
+            PageViewModels.Add(new UsersViewModel());
 
             // Set starting page
             CurrentPageViewModel = PageViewModels[0];
