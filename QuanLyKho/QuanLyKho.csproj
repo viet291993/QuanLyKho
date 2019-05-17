@@ -33,6 +33,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.3.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
       <HintPath>..\packages\BouncyCastle.1.8.3.1\lib\BouncyCastle.Crypto.dll</HintPath>
@@ -289,6 +293,7 @@
     <Compile Include="Model\customer.cs">
       <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Model\DataProvider.cs" />
     <Compile Include="Model\input.cs">
       <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
@@ -328,6 +333,7 @@
     <Compile Include="Model\user.cs">
       <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\BasicViewModel.cs" />
     <Compile Include="ViewModel\RetailCustomersViewModel.cs" />
     <Compile Include="ViewModel\OutputViewModel.cs" />
     <Compile Include="ViewModel\BusinessCustomersViewModel.cs" />
@@ -452,6 +458,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="icon.ico" />
     <Content Include="Model\QuanLyKhoModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>QuanLyKhoModel.edmx</DependentUpon>

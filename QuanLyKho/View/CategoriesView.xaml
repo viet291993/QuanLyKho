@@ -20,8 +20,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox Margin="20,5" IsEnabled="False" materialDesign:HintAssist.Hint="Mã thể loại" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Column="1" materialDesign:HintAssist.Hint="Tên thể loại" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding id}" Margin="20,5" IsEnabled="False" materialDesign:HintAssist.Hint="Mã thể loại" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding name}" Margin="20,5" Grid.Column="1" materialDesign:HintAssist.Hint="Tên thể loại" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         </Grid>
         <WrapPanel Grid.Row="2" HorizontalAlignment="Center" Margin="5">
             <Button Width="100" Margin="5">
@@ -56,19 +56,17 @@
             </Button>
         </WrapPanel>
         <Grid Grid.Row="3" Margin="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <ListView Grid.Row="1" Margin="5"  ItemsSource="{Binding Items1}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Code}" Header="STT" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Code}" Header="Mã thể loại" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Tên thể loại"/>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <ListView Margin="5"  ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn DisplayMemberBinding="{Binding index}" Header="STT" />
+                            <GridViewColumn DisplayMemberBinding="{Binding id}" Header="Mã thể loại" />
+                            <GridViewColumn DisplayMemberBinding="{Binding name}" Header="Tên thể loại"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

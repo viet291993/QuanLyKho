@@ -26,13 +26,13 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox Margin="20,5" Grid.Row="0" Grid.Column="0" materialDesign:HintAssist.Hint="Mã sản phẩm" IsEnabled="False" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Row="0" Grid.Column="1" materialDesign:HintAssist.Hint="Tên sản phẩm" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Row="1" Grid.Column="0" materialDesign:HintAssist.Hint="Đơn vị" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="Giá sản phẩm" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Row="2" Grid.Column="0" materialDesign:HintAssist.Hint="Mô tả" Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextWrapping="Wrap" VerticalAlignment="Stretch" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" SpellCheck.IsEnabled="True" />
-            <TextBox Margin="20,5" Grid.Row="2" Grid.Column="1" materialDesign:HintAssist.Hint="Ghi chú" Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextWrapping="Wrap" VerticalAlignment="Stretch" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" SpellCheck.IsEnabled="True" />
-            <ComboBox Margin="20,5" Grid.Row="3" Grid.Column="0"  materialDesign:HintAssist.Hint="Loại sản phẩm" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
+            <TextBox Text="{Binding id}" Margin="20,5" Grid.Row="0" Grid.Column="0" materialDesign:HintAssist.Hint="Mã sản phẩm" IsEnabled="False" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding name}" Margin="20,5" Grid.Row="0" Grid.Column="1" materialDesign:HintAssist.Hint="Tên sản phẩm" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding unit}" Margin="20,5" Grid.Row="1" Grid.Column="0" materialDesign:HintAssist.Hint="Đơn vị" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding price}" Margin="20,5" Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="Giá sản phẩm" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding description}" Margin="20,5" Grid.Row="2" Grid.Column="0" materialDesign:HintAssist.Hint="Mô tả" Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextWrapping="Wrap" VerticalAlignment="Stretch" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" SpellCheck.IsEnabled="True" />
+            <TextBox Text="{Binding note}" Margin="20,5" Grid.Row="2" Grid.Column="1" materialDesign:HintAssist.Hint="Ghi chú" Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextWrapping="Wrap" VerticalAlignment="Stretch" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" SpellCheck.IsEnabled="True" />
+            <ComboBox ItemsSource="{Binding Category}" DisplayMemberPath="name" SelectedItem="{Binding SelectCategory, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Margin="20,5" Grid.Row="3" Grid.Column="0"  materialDesign:HintAssist.Hint="Loại sản phẩm" IsEditable="True" Style="{StaticResource MaterialDesignFloatingHintComboBox}">
                
             </ComboBox>
         </Grid>
@@ -70,23 +70,21 @@
         </WrapPanel>
 
         <Grid Grid.Row="3" Margin="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <ListView Grid.Row="1" Margin="5"  ItemsSource="{Binding Items1}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <ListView Margin="5"  ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Code}" Header="STT" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Code}" Header="Mã sản phẩm" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Tên sản phẩm"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Đơn vị"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Giá sản phẩm"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Mô tả"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Ghi chú"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding id}" Header="STT" />
+                        <GridViewColumn DisplayMemberBinding="{Binding id}" Header="Mã sản phẩm" />
+                        <GridViewColumn DisplayMemberBinding="{Binding name}" Header="Tên sản phẩm"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding unit}" Header="Đơn vị"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding price}" Header="Giá sản phẩm"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding description}" Header="Mô tả"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding note}" Header="Ghi chú"/>
                     </GridView>
                 </ListView.View>
             </ListView>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

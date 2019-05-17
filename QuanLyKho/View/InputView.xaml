@@ -26,8 +26,8 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBox Margin="20,5" IsEnabled="False" materialDesign:HintAssist.Hint="Mã phiếu nhập" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <DatePicker Margin="20,5" Grid.Row="1" materialDesign:HintAssist.Hint="Ngày lập phiếu" Style="{StaticResource MaterialDesignFloatingHintDatePicker}" />
             <TextBox Margin="20,5" Grid.Row="2" materialDesign:HintAssist.Hint="Tên nhà cung cấp" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Row="1"  IsEnabled="False" materialDesign:HintAssist.Hint="Ngày lập phiếu" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
             <TextBox Margin="20,5" Grid.Row="3" materialDesign:HintAssist.Hint="Trạng thái" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
         </Grid>
         <WrapPanel Grid.Row="2" HorizontalAlignment="Center" Margin="5">

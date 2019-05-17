@@ -24,5 +24,6 @@ namespace QuanLyKho.View
         {
             InitializeComponent();
         }
+
     }
 }

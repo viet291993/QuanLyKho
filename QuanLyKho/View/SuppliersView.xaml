@@ -27,16 +27,16 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <TextBox Margin="20,5" Grid.Row="0" Grid.Column="0" materialDesign:HintAssist.Hint="Mã nhà cung cấp" IsEnabled="False" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Row="0" Grid.Column="1" materialDesign:HintAssist.Hint="Tên nhà cung cấp" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Row="1" Grid.Column="0" materialDesign:HintAssist.Hint="Điện thoại" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="Di động" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Row="2" Grid.Column="0" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Row="2" Grid.Column="1" materialDesign:HintAssist.Hint="Tên ngân hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Row="3" Grid.Column="0" materialDesign:HintAssist.Hint="Số tài khoản" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Row="3" Grid.Column="1" materialDesign:HintAssist.Hint="Swift code" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
-            <TextBox Margin="20,5" Grid.Row="4" Grid.Column="0" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextWrapping="Wrap" VerticalAlignment="Stretch" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" SpellCheck.IsEnabled="True" />
-            <TextBox Margin="20,5" Grid.Row="4" Grid.Column="1" materialDesign:HintAssist.Hint="Ghi chú" Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextWrapping="Wrap" VerticalAlignment="Stretch" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" SpellCheck.IsEnabled="True" />
+            <TextBox Text="{Binding id}" Margin="20,5" Grid.Row="0" Grid.Column="0" materialDesign:HintAssist.Hint="Mã nhà cung cấp" IsEnabled="False" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding name}" Margin="20,5" Grid.Row="0" Grid.Column="1" materialDesign:HintAssist.Hint="Tên nhà cung cấp" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding phone}" Margin="20,5" Grid.Row="1" Grid.Column="0" materialDesign:HintAssist.Hint="Điện thoại" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding mobile}" Margin="20,5" Grid.Row="1" Grid.Column="1" materialDesign:HintAssist.Hint="Di động" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding email}" Margin="20,5" Grid.Row="2" Grid.Column="0" materialDesign:HintAssist.Hint="Email" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding bank}" Margin="20,5" Grid.Row="2" Grid.Column="1" materialDesign:HintAssist.Hint="Tên ngân hàng" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding account_number}" Margin="20,5" Grid.Row="3" Grid.Column="0" materialDesign:HintAssist.Hint="Số tài khoản" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding swift_code}" Margin="20,5" Grid.Row="3" Grid.Column="1" materialDesign:HintAssist.Hint="Swift code" Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+            <TextBox Text="{Binding address}" Margin="20,5" Grid.Row="4" Grid.Column="0" materialDesign:HintAssist.Hint="Địa chỉ" Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextWrapping="Wrap" VerticalAlignment="Stretch" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" SpellCheck.IsEnabled="True" />
+            <TextBox Text="{Binding note}" Margin="20,5" Grid.Row="4" Grid.Column="1" materialDesign:HintAssist.Hint="Ghi chú" Style="{StaticResource MaterialDesignFloatingHintTextBox}" TextWrapping="Wrap" VerticalAlignment="Stretch" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" SpellCheck.IsEnabled="True" />
         </Grid>
         <WrapPanel Grid.Row="2" HorizontalAlignment="Center" Margin="5">
             <Button Width="100" Margin="5">
@@ -72,24 +72,22 @@
         </WrapPanel>
 
         <Grid Grid.Row="3" Margin="5">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <ListView Grid.Row="1" Margin="5"  ItemsSource="{Binding Items1}">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+            <ListView Margin="5"  ItemsSource="{Binding List}" SelectedItem="{Binding SelectedItem, Mode=OneWayToSource}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn DisplayMemberBinding="{Binding Code}" Header="STT" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Code}" Header="Mã nhà cung cấp" />
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Tên nhà cung cấp"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Điện thoại"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Di động"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Email"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Địa chỉ"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Ghi chú"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding id}" Header="STT" />
+                        <GridViewColumn DisplayMemberBinding="{Binding id}" Header="Mã nhà cung cấp" />
+                        <GridViewColumn DisplayMemberBinding="{Binding name}" Header="Tên nhà cung cấp"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding phone}" Header="Điện thoại"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding mobile}" Header="Di động"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding email}" Header="Email"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding address}" Header="Địa chỉ"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding note}" Header="Ghi chú"/>
                     </GridView>
                 </ListView.View>
             </ListView>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>
