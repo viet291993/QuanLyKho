@@ -1,4 +1,6 @@
-﻿namespace QuanLyKho
+﻿using System.Collections.ObjectModel;
+
+namespace QuanLyKho
 {
     public interface IPageViewModel
     {

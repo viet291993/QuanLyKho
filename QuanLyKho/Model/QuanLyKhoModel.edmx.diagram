@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6ec2cf3b8f1144649b9872d02626fca6" Name="Diagram1">
+        <EntityTypeShape EntityType="quanlykhoModel.category" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="quanlykhoModel.customer" Width="1.5" PointX="3.75" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="quanlykhoModel.input" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="quanlykhoModel.inputdetail" Width="1.5" PointX="5.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="quanlykhoModel.output" Width="1.5" PointX="6" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="quanlykhoModel.outputdetail" Width="1.5" PointX="8.25" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="quanlykhoModel.product" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="quanlykhoModel.role" Width="1.5" PointX="5.75" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="quanlykhoModel.supplier" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="quanlykhoModel.user" Width="1.5" PointX="8" PointY="7" IsExpanded="true" />
+        <AssociationConnector Association="quanlykhoModel.fk_products_categories1" ManuallyRouted="false" />
+        <AssociationConnector Association="quanlykhoModel.fk_output_customers1" ManuallyRouted="false" />
+        <AssociationConnector Association="quanlykhoModel.fk_input_suppliers1" ManuallyRouted="false" />
+        <AssociationConnector Association="quanlykhoModel.fk_inputdetail_input1" ManuallyRouted="false" />
+        <AssociationConnector Association="quanlykhoModel.fk_inputdetail_products1" ManuallyRouted="false" />
+        <AssociationConnector Association="quanlykhoModel.fk_outputdetail_output1" ManuallyRouted="false" />
+        <AssociationConnector Association="quanlykhoModel.fk_outputdetail_products1" ManuallyRouted="false" />
+        <AssociationConnector Association="quanlykhoModel.fk_users_role1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

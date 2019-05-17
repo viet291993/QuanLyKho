@@ -22,12 +22,17 @@ namespace QuanLyKho.Model
     
         public int id { get; set; }
         public string name { get; set; }
-        public sbyte gender { get; set; }
-        public string city { get; set; }
+        public string identity_card { get; set; }
+        public string bank { get; set; }
+        public string account_number { get; set; }
+        public sbyte group { get; set; }
         public string address { get; set; }
         public string phone { get; set; }
+        public string mobile { get; set; }
         public string email { get; set; }
         public string note { get; set; }
+        public string represent { get; set; }
+        public string contact { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<output> outputs { get; set; }

@@ -18,9 +18,9 @@ namespace QuanLyKho.View
     /// <summary>
     /// Interaction logic for CustomersView.xaml
     /// </summary>
-    public partial class CustomersView : UserControl
+    public partial class RetailCustomersView : UserControl
     {
-        public CustomersView()
+        public RetailCustomersView()
         {
             InitializeComponent();
         }

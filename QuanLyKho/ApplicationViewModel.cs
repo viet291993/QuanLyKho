@@ -26,7 +26,8 @@ namespace QuanLyKho
             PageViewModels.Add(new CategoriesViewModel());
             PageViewModels.Add(new ProductsViewModel());
             PageViewModels.Add(new SuppliersViewModel());
-            PageViewModels.Add(new CustomersViewModel());
+            PageViewModels.Add(new BusinessCustomersViewModel());
+            PageViewModels.Add(new RetailCustomersViewModel());
             PageViewModels.Add(new UsersViewModel());
 
             // Set starting page

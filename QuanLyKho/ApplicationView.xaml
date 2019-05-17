@@ -6,8 +6,9 @@
         xmlns:localViewModel="clr-namespace:QuanLyKho.ViewModel"
         xmlns:localView="clr-namespace:QuanLyKho.View"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
-       
-        mc:Ignorable="d" Height="700" Width="1300" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Height="{x:Static SystemParameters.PrimaryScreenHeight}" 
+        Width="{x:Static SystemParameters.PrimaryScreenWidth}" 
+        mc:Ignorable="d"  ResizeMode="CanResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -29,8 +30,11 @@
             <DataTemplate DataType="{x:Type localViewModel:SuppliersViewModel}">
                 <localView:SuppliersView />
             </DataTemplate>
-            <DataTemplate DataType="{x:Type localViewModel:CustomersViewModel}">
-                <localView:CustomersView />
+            <DataTemplate DataType="{x:Type localViewModel:BusinessCustomersViewModel}">
+                <localView:BusinessCustomersView />
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type localViewModel:RetailCustomersViewModel}">
+                <localView:RetailCustomersView />
             </DataTemplate>
             <DataTemplate DataType="{x:Type localViewModel:UsersViewModel}">
                 <localView:UsersView />
@@ -144,7 +148,7 @@
                 <DropShadowEffect BlurRadius="20" Color="#FFDEDEDE" RenderingBias="Quality" ShadowDepth="1"/>
             </Grid.Effect>
 
-            <Grid Background="#FFA46FE4">
+            <Grid Background="#A8D4FF">
                 <materialDesign:Flipper  Style="{StaticResource MaterialDesignCardFlipper}" HorizontalAlignment="Left" Width="200">
                     <materialDesign:Flipper.FrontContent>
                         <Grid Height="256"  Width="200">
@@ -197,12 +201,11 @@
                 </materialDesign:Flipper>
             </Grid>
 
-            <StackPanel Grid.Row="1">
-
+            <ScrollViewer Grid.Row="1">
                 <ItemsControl ItemsSource="{Binding PageViewModels}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Button Margin="10" Background="#FF8522BD" BorderBrush="#FF8522BD" 
+                            <Button Margin="10" Background="#0082FF" BorderBrush="#FF8522BD" 
                                     Command="{Binding DataContext.ChangePageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                     CommandParameter="{Binding }">
                                 <Grid Width="150">
@@ -213,16 +216,12 @@
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-
-
-
-
-            </StackPanel>
+            </ScrollViewer>
         </Grid>
 
-        <Grid x:Name="GridBarraTitulo" Grid.ColumnSpan="2" Background="#FF8522BD" MouseDown="GridBarraTitulo_MouseDown">
+        <Grid x:Name="GridBarraTitulo" Grid.ColumnSpan="2" Background="#0082FF" MouseDown="GridBarraTitulo_MouseDown">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10,0">
-                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">
+                <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White" Margin="0,2,0,0" VerticalAlignment="Top">
                     <materialDesign:PackIcon Kind="Bell"/>
                 </Button>
                 <Button Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Width="25" Height="25" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="White">

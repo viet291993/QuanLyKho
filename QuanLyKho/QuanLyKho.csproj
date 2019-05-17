@@ -284,63 +284,67 @@
     <Compile Include="HelperClass\RelayCommand.cs" />
     <Compile Include="IPageViewModel.cs" />
     <Compile Include="Model\category.cs">
-      <DependentUpon>DbQuanLyKho.tt</DependentUpon>
+      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\customer.cs">
-      <DependentUpon>DbQuanLyKho.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\DbQuanLyKho.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DbQuanLyKho.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\DbQuanLyKho.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DbQuanLyKho.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model\DbQuanLyKho.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DbQuanLyKho.edmx</DependentUpon>
+      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\input.cs">
-      <DependentUpon>DbQuanLyKho.tt</DependentUpon>
+      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\inputdetail.cs">
-      <DependentUpon>DbQuanLyKho.tt</DependentUpon>
+      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\output.cs">
-      <DependentUpon>DbQuanLyKho.tt</DependentUpon>
+      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\outputdetail.cs">
-      <DependentUpon>DbQuanLyKho.tt</DependentUpon>
+      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\product.cs">
-      <DependentUpon>DbQuanLyKho.tt</DependentUpon>
+      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\QuanLyKhoModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyKhoModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\QuanLyKhoModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\QuanLyKhoModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QuanLyKhoModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\role.cs">
-      <DependentUpon>DbQuanLyKho.tt</DependentUpon>
+      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\supplier.cs">
-      <DependentUpon>DbQuanLyKho.tt</DependentUpon>
+      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\user.cs">
-      <DependentUpon>DbQuanLyKho.tt</DependentUpon>
+      <DependentUpon>QuanLyKhoModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModel\RetailCustomersViewModel.cs" />
     <Compile Include="ViewModel\OutputViewModel.cs" />
-    <Compile Include="ViewModel\CustomersViewModel.cs" />
+    <Compile Include="ViewModel\BusinessCustomersViewModel.cs" />
     <Compile Include="ViewModel\ProductsViewModel.cs" />
     <Compile Include="ViewModel\SuppliersViewModel.cs" />
     <Compile Include="ViewModel\UsersViewModel.cs" />
     <Compile Include="ViewModel\CategoriesViewModel.cs" />
     <Compile Include="ViewModel\HomeViewModel.cs" />
     <Compile Include="ViewModel\InputViewModel.cs" />
+    <Compile Include="View\RetailCustomersView.xaml.cs">
+      <DependentUpon>RetailCustomersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CategoriesView.xaml.cs">
       <DependentUpon>CategoriesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\CustomersView.xaml.cs">
-      <DependentUpon>CustomersView.xaml</DependentUpon>
+    <Compile Include="View\BusinessCustomersView.xaml.cs">
+      <DependentUpon>BusinessCustomersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -372,11 +376,15 @@
       <DependentUpon>ApplicationView.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\RetailCustomersView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="View\CategoriesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\CustomersView.xaml">
+    <Page Include="View\BusinessCustomersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -423,12 +431,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="Model\DbQuanLyKho.edmx">
+    <EntityDeploy Include="Model\QuanLyKhoModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DbQuanLyKho.Designer.cs</LastGenOutput>
+      <LastGenOutput>QuanLyKhoModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Model\DbQuanLyKho.edmx.diagram">
-      <DependentUpon>DbQuanLyKho.edmx</DependentUpon>
+    <None Include="Model\QuanLyKhoModel.edmx.diagram">
+      <DependentUpon>QuanLyKhoModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -444,15 +452,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Model\DbQuanLyKho.Context.tt">
+    <Content Include="Model\QuanLyKhoModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbQuanLyKho.edmx</DependentUpon>
-      <LastGenOutput>DbQuanLyKho.Context.cs</LastGenOutput>
+      <DependentUpon>QuanLyKhoModel.edmx</DependentUpon>
+      <LastGenOutput>QuanLyKhoModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\DbQuanLyKho.tt">
+    <Content Include="Model\QuanLyKhoModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DbQuanLyKho.edmx</DependentUpon>
-      <LastGenOutput>DbQuanLyKho.cs</LastGenOutput>
+      <DependentUpon>QuanLyKhoModel.edmx</DependentUpon>
+      <LastGenOutput>QuanLyKhoModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

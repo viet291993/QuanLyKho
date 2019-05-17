@@ -24,7 +24,11 @@ namespace QuanLyKho.Model
         public string name { get; set; }
         public string address { get; set; }
         public string phone { get; set; }
+        public string mobile { get; set; }
         public string email { get; set; }
+        public string bank { get; set; }
+        public string account_number { get; set; }
+        public string swift_code { get; set; }
         public string note { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
